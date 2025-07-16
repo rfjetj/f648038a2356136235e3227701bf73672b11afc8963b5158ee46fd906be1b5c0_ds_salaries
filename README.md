@@ -20,7 +20,6 @@ Place the CSV file in the data/Bronze/ folder with the filename salaries.csv bef
 │   ├── EDA.ipynb
 │   ├── preprocessing_modelling copy.ipynb
 │   ├── preprocessing_modelling.ipynb
-│   └── test.ipynb
 ├── pyproject.toml
 ├── src
 │   ├── data_preprocessing.py
@@ -31,3 +30,27 @@ Place the CSV file in the data/Bronze/ folder with the filename salaries.csv bef
 │   └── training.py
 └── uv.lock
 ```
+
+# Setup Instructions
+This project uses [uv](https://github.com/astral-sh/uv) for managing the Python environment and dependencies.
+
+1. Install Python
+Download and install Python 3.12+ from the [official website](https://www.python.org/downloads/).
+2. Install uv
+Install `uv` using pip
+```bash
+pip install uv
+```
+3. Create a virtual environment
+```uv venv .venv --python python3.12```
+4. Activate the virtual environment (Windows)
+```.\.venv\Scripts\activate```
+5. Install dependencies
+```
+uv add scikit-learn
+uv add pandas numpy
+uv add ipykernel
+uv add matplotlib seaborn
+uv add xgboost catboost
+```
+
