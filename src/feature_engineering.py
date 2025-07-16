@@ -1,5 +1,5 @@
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
+from sklearn.compose import ColumnTransformer
 def create_feature_transformer(X_train):
     """Create a preprocessor for transforming features."""
     cat_cols = X_train.select_dtypes(include=['object', 'category']).columns.tolist()
