@@ -54,3 +54,18 @@ uv add matplotlib seaborn
 uv add xgboost catboost
 ```
 
+# Pre-commit Hook Config
+I use **pre-commit** to keep my code clean and consistent before every commit.
+### Hooks used
+- **ruff** (v0.12.3)  
+  Checks Python code for errors and fixes formatting automatically (`--fix`).
+- **ruff-format**  
+  Ensures consistent code style.
+- **uv-lock** (v0.7.20)  
+  Keeps the `uv.lock` file updated when dependencies change.
+
+
+# Reflection
+This project has been tough for me coming from a non-dev background. All of the topics are very unfamiliar and the rate of discussion is too fast. I find myself relying on LLMs like chatGPT to help generate the code, understand concepts and determine the next steps to take. I also found my experienced classmates very helpful in this assignment 💪. 
+
+Despite the challenges, this experience gave me a glimpse of how ML and Data Science projects are done in production. This greatly expanded my perspective in handling real-world projects. With the more structured approach, it is easier to understand and visualize the processes. I look forward to applying these skills and deepening my knowledge as I continue my journey
