@@ -1,0 +1,2 @@
+# Project Overview
+This project aims to predict the annual salary (in USD) of Data Scientists based on various job and company features such as experience level, employment type, company size, and location. The dataset contains salary records reported from 2020 through 2025 across different job titles, but the analysis is focused exclusively on Data Scientist roles to build a specialized and accurate predictive model.
