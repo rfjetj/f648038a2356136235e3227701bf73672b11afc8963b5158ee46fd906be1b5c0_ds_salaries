@@ -6,7 +6,7 @@ The dataset used in this project can be downloaded from [text](https://www.kaggl
 Place the CSV file in the data/Bronze/ folder with the filename salaries.csv before running the pipeline.
 
 # Folder Structure
-"""
+```
 ├── .python-version
 ├── README.md
 ├── data
@@ -30,4 +30,4 @@ Place the CSV file in the data/Bronze/ folder with the filename salaries.csv bef
 │   ├── salaries.csv
 │   └── training.py
 └── uv.lock
-"""
+```
