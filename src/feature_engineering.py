@@ -1,7 +1,7 @@
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 def create_feature_transformer(X_train):
-    # Identify categorical and numeric columns
+    """Create a preprocessor for transforming features."""
     cat_cols = X_train.select_dtypes(include=['object', 'category']).columns.tolist()
     num_cols = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
     print(f"Categorical columns: {cat_cols}")
