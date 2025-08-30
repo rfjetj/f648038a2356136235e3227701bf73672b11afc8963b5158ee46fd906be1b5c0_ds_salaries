@@ -1,15 +1,17 @@
-FROM apache/airflow:2.10.3
+# Airflow 2.9.x with Python 3.12
+FROM apache/airflow:2.9.3-python3.12
 
-USER airflow
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1
 
-RUN pip install --no-cache-dir uv
+ARG AIRFLOW_VERSION=2.9.3
+ARG PYTHON_VERSION=3.12
+ARG CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 
-WORKDIR /app
+# Install ONLY what DAGs/operators need (respect Airflow constraints!)
+COPY deploy/airflow/requirements.txt /requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
 
-COPY --chown=airflow:0 pyproject.toml uv.lock* ./
-
-RUN uv pip compile pyproject.toml -o requirements.txt && \
-    uv pip install -r requirements.txt
-
-RUN mkdir -p /app/data /app/data/raw /app/data/preprocessed /app/models /app/reports /app/logs && \
-    chown -R airflow:0 /app/data /app/data/raw /app/data/preprocessed /app/models /app/reports /app/logs
+# Bake your project code (src + salaries.csv) into the image
+# (this path is relative to the REPO ROOT build context)
+COPY src /opt/airflow/src

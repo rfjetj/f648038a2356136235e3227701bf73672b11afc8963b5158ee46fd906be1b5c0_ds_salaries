@@ -1,0 +1,37 @@
+[2025-08-30T15:19:59.137+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-08-30T15:19:59.156+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_dag.feature_engineering manual__2025-08-30T15:19:06+00:00 [queued]>
+[2025-08-30T15:19:59.167+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_dag.feature_engineering manual__2025-08-30T15:19:06+00:00 [queued]>
+[2025-08-30T15:19:59.168+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-08-30T15:19:59.186+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): feature_engineering> on 2025-08-30 15:19:06+00:00
+[2025-08-30T15:19:59.189+0000] {standard_task_runner.py:64} INFO - Started process 82562 to run task
+[2025-08-30T15:19:59.191+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ml_pipeline_dag', 'feature_engineering', 'manual__2025-08-30T15:19:06+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline_dag.py', '--cfg-path', '/tmp/tmpdn_aukbw']
+[2025-08-30T15:19:59.193+0000] {standard_task_runner.py:91} INFO - Job 12: Subtask feature_engineering
+[2025-08-30T15:19:59.264+0000] {task_command.py:426} INFO - Running <TaskInstance: ml_pipeline_dag.feature_engineering manual__2025-08-30T15:19:06+00:00 [running]> on host 6ac8375f1c3a
+[2025-08-30T15:19:59.350+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ml_pipeline_dag' AIRFLOW_CTX_TASK_ID='feature_engineering' AIRFLOW_CTX_EXECUTION_DATE='2025-08-30T15:19:06+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-08-30T15:19:06+00:00'
+[2025-08-30T15:19:59.351+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-08-30T15:19:59.845+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-08-30T15:19:59.846+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ml_pipeline_dag.py", line 36, in t_feature_engineering
+    from src.feature_engineering import engineer_features
+ImportError: cannot import name 'engineer_features' from 'src.feature_engineering' (/opt/airflow/src/feature_engineering.py)
+[2025-08-30T15:19:59.859+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ml_pipeline_dag, task_id=feature_engineering, run_id=manual__2025-08-30T15:19:06+00:00, execution_date=20250830T151906, start_date=20250830T151959, end_date=20250830T151959
+[2025-08-30T15:19:59.875+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 12 for task feature_engineering (cannot import name 'engineer_features' from 'src.feature_engineering' (/opt/airflow/src/feature_engineering.py); 82562)
+[2025-08-30T15:19:59.891+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2025-08-30T15:19:59.912+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-08-30T15:19:59.925+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

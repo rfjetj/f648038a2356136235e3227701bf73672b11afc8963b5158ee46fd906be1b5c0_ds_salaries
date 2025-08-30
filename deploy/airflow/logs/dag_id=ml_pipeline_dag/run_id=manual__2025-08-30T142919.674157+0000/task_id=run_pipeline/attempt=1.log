@@ -1,0 +1,38 @@
+[2025-08-30T14:29:20.203+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-08-30T14:29:20.229+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_dag.run_pipeline manual__2025-08-30T14:29:19.674157+00:00 [queued]>
+[2025-08-30T14:29:20.234+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_dag.run_pipeline manual__2025-08-30T14:29:19.674157+00:00 [queued]>
+[2025-08-30T14:29:20.235+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-08-30T14:29:20.243+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): run_pipeline> on 2025-08-30 14:29:19.674157+00:00
+[2025-08-30T14:29:20.249+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'ml_pipeline_dag', 'run_pipeline', 'manual__2025-08-30T14:29:19.674157+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline_dag.py', '--cfg-path', '/tmp/tmpun047swd']
+[2025-08-30T14:29:20.251+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=230) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-08-30T14:29:20.252+0000] {standard_task_runner.py:91} INFO - Job 3: Subtask run_pipeline
+[2025-08-30T14:29:20.252+0000] {standard_task_runner.py:64} INFO - Started process 231 to run task
+[2025-08-30T14:29:20.319+0000] {task_command.py:426} INFO - Running <TaskInstance: ml_pipeline_dag.run_pipeline manual__2025-08-30T14:29:19.674157+00:00 [running]> on host 91727d711782
+[2025-08-30T14:29:20.390+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ml_pipeline_dag' AIRFLOW_CTX_TASK_ID='run_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2025-08-30T14:29:19.674157+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-08-30T14:29:19.674157+00:00'
+[2025-08-30T14:29:20.390+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-08-30T14:29:20.416+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-08-30T14:29:20.417+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ml_pipeline_dag.py", line 9, in run
+    from src import run_pipeline
+ModuleNotFoundError: No module named 'src'
+[2025-08-30T14:29:20.428+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ml_pipeline_dag, task_id=run_pipeline, run_id=manual__2025-08-30T14:29:19.674157+00:00, execution_date=20250830T142919, start_date=20250830T142920, end_date=20250830T142920
+[2025-08-30T14:29:20.440+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 3 for task run_pipeline (No module named 'src'; 231)
+[2025-08-30T14:29:20.466+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2025-08-30T14:29:20.480+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-08-30T14:29:20.482+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

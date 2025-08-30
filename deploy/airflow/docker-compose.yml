@@ -1,49 +1,32 @@
-x-airflow-common: &airflow-common
-  image: custom-airflow:latest
-  build: .
+# deploy/airflow/docker-compose.yml
+# (no 'version:' line — it's obsolete)
+
+x-airflow: &airflow
+  build:
+    context: ../..                 # ⟵ REPO ROOT (so /src exists for COPY)
+    dockerfile: deploy/airflow/Dockerfile
   environment:
-    AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
-    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "True"
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW_UID: "50000"
+    AIRFLOW__CORE__DEFAULT_TIMEZONE: "Asia/Manila"
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
   volumes:
-    - "C:/Users/Jethro/Documents/School/AIM/Term 7/MLOps/MLOPS_HW1:/app"
+    - ./airflow_home/airflow.db:/opt/airflow/airflow.db
     - ./dags:/opt/airflow/dags
+    - ./plugins:/opt/airflow/plugins
     - ./logs:/opt/airflow/logs
-  user: "${AIRFLOW_UID:-50000}:0"
-  depends_on:
-    - postgres
+    # remove the src bind mount — we bake code into the image now
+    # - ../../src:/opt/airflow/src:ro
+    - ../../data:/opt/airflow/data
+    - ../../models:/opt/airflow/models
 
 services:
-  postgres:
-    image: postgres:14
-    environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  airflow-init:
-    <<: *airflow-common
-    entrypoint: /bin/bash
-    command: -c "airflow db init && airflow users create --username admin --password admin --firstname Air --lastname Flow --role Admin --email admin@example.com"
-
   webserver:
-    <<: *airflow-common
+    <<: *airflow
+    command: webserver
     ports:
       - "8080:8080"
-    command: webserver
-    depends_on:
-      - airflow-init
 
   scheduler:
-    <<: *airflow-common
+    <<: *airflow
     command: scheduler
-    depends_on:
-      - airflow-init
-
-volumes:
-  pgdata:

@@ -1,0 +1,33 @@
+[2025-08-30T15:07:07.214+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-08-30T15:07:07.311+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ml_pipeline_dag.run_pipeline manual__2025-08-30T15:06:31.792179+00:00 [queued]>
+[2025-08-30T15:07:07.332+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ml_pipeline_dag.run_pipeline manual__2025-08-30T15:06:31.792179+00:00 [queued]>
+[2025-08-30T15:07:07.333+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-08-30T15:07:07.366+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): run_pipeline> on 2025-08-30 15:06:31.792179+00:00
+[2025-08-30T15:07:07.522+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ml_pipeline_dag', 'run_pipeline', 'manual__2025-08-30T15:06:31.792179+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/ml_pipeline_dag.py', '--cfg-path', '/tmp/tmpgr1bz2pt']
+[2025-08-30T15:07:07.535+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask run_pipeline
+[2025-08-30T15:07:07.686+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=9240) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-08-30T15:07:07.688+0000] {standard_task_runner.py:64} INFO - Started process 13726 to run task
+[2025-08-30T15:07:07.792+0000] {task_command.py:426} INFO - Running <TaskInstance: ml_pipeline_dag.run_pipeline manual__2025-08-30T15:06:31.792179+00:00 [running]> on host 6ac8375f1c3a
+[2025-08-30T15:07:08.038+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='ml_pipeline_dag' AIRFLOW_CTX_TASK_ID='run_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2025-08-30T15:06:31.792179+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-08-30T15:06:31.792179+00:00'
+[2025-08-30T15:07:08.044+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-08-30T15:07:08.094+0000] {logging_mixin.py:188} INFO - Current working directory: /opt/airflow
+[2025-08-30T15:07:08.696+0000] {logging_mixin.py:188} INFO - Categorical columns: ['experience_level', 'employment_type', 'job_title', 'employee_residence', 'company_location', 'company_size']
+[2025-08-30T15:07:08.697+0000] {logging_mixin.py:188} INFO - Numeric columns: ['work_year', 'remote_ratio']
+[2025-08-30T15:07:08.875+0000] {logging_mixin.py:188} INFO - Fitting 5 folds for each of 216 candidates, totalling 1080 fits
+[2025-08-30T15:19:38.876+0000] {logging_mixin.py:188} INFO - [RandomForest] Best params: {'bootstrap': True, 'max_depth': None, 'max_features': 0.5, 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 300}
+[2025-08-30T15:19:38.881+0000] {logging_mixin.py:188} INFO - [RandomForest] Best score (neg MSE): -3456118467.9093757
+[2025-08-30T15:19:38.888+0000] {logging_mixin.py:188} INFO - Fitting 5 folds for each of 10 candidates, totalling 50 fits
+[2025-08-30T15:19:39.154+0000] {logging_mixin.py:188} INFO - [Ridge] Best params: {'alpha': 1.0, 'fit_intercept': True}
+[2025-08-30T15:19:39.155+0000] {logging_mixin.py:188} INFO - [Ridge] Best score (neg MSE): -3484630416.452194
+[2025-08-30T15:19:39.156+0000] {logging_mixin.py:188} INFO - [Selected] RandomForest with neg MSE: -3456118467.9093757
+[2025-08-30T15:19:39.542+0000] {logging_mixin.py:188} INFO - Best model saved to models/model.pkl
+[2025-08-30T15:19:39.634+0000] {logging_mixin.py:188} INFO - Model evaluation:
+[2025-08-30T15:19:39.635+0000] {logging_mixin.py:188} INFO - Mean Squared Error: 3492341325.48
+[2025-08-30T15:19:39.636+0000] {logging_mixin.py:188} INFO - Root Mean Squared Error: 59096.03
+[2025-08-30T15:19:39.636+0000] {logging_mixin.py:188} INFO - R^2 Score: 0.18
+[2025-08-30T15:19:39.646+0000] {python.py:237} INFO - Done. Returned value was: None
+[2025-08-30T15:19:39.652+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-08-30T15:19:39.698+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ml_pipeline_dag, task_id=run_pipeline, run_id=manual__2025-08-30T15:06:31.792179+00:00, execution_date=20250830T150631, start_date=20250830T150707, end_date=20250830T151939
+[2025-08-30T15:19:39.788+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2025-08-30T15:19:39.823+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-08-30T15:19:39.825+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
